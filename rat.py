@@ -2,7 +2,7 @@ import socket
 from time import sleep
 import subprocess
 
-ip = '192.168.1.3'
+ip = 'x'
 port = 8080
 
 def connect(ip, port):
