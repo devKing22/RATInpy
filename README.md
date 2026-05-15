@@ -1,5 +1,12 @@
-# RAT (Remote Acess Trojan) In Python
+# AVISO
+**Projeto destinado exclusivamente para ambientes locais e controlados.
+Não utilize em dispositivos de terceiros.**
 
+
+
+
+# RAT (Remote Acess Trojan) In Python
+# Qualquer coisa aqui foi legalmente usado em ambiente controlado,projeto 100% educacional para aprendizado de python
 **Como Usar:**
 git clone https://github.com/devKing22/RATInpy/ 
 
@@ -23,3 +30,4 @@ pip install pyinstaller
 para tranformar em .exe use: pyinstaller --onefile --noconsole rat.py
 
 **By Marco**
+# É 100% educacional,foi feito apenas para conseguir experiencia,nao espalhe e nem use para infectar outra pessoa
